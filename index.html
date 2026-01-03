@@ -7,99 +7,82 @@
   <meta name="theme-color" content="#111827" />
   <link rel="manifest" href="manifest.webmanifest">
   <style>
-    :root{--muted:#94a3b8;--text:#e5e7eb;--line:rgba(148,163,184,.22);--card:rgba(17,27,46,.78);}
+    :root{
+      --muted:#94a3b8;--text:#e5e7eb;--line:rgba(148,163,184,.22);
+      --card:rgba(17,27,46,.78);--bg:linear-gradient(180deg,#060b16,#0b1220 35%);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#060b16,#0b1220 35%);color:var(--text);}
-    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:rgba(6,11,22,.72);border-bottom:1px solid var(--line);}
-    .wrap{max-width:820px;margin:0 auto;padding:16px;}
-    h1{font-size:20px;margin:0 0 6px 0;}
-    .sub{color:var(--muted);font-size:13px;margin:0 0 12px 0;}
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    input,button,select{font:inherit}
-    .search{flex:1;min-width:220px;padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.9);color:var(--text);}
-    .btn{padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.9);color:var(--text);}
-    .btn.primary{border-color:rgba(34,197,94,.45);}
-    .btn.danger{border-color:rgba(239,68,68,.45);}
-    .btn.ghost{background:transparent}
-    .select{padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.9);color:var(--text);}
-    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 10px;background:rgba(17,27,46,.7);color:var(--muted);font-size:12px;}
-    .tabs{display:flex;gap:10px;margin-top:10px;}
-    .tab{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.6);color:var(--muted);cursor:pointer}
-    .tab.on{color:var(--text);border-color:rgba(34,197,94,.35);background:rgba(17,27,46,.9)}
-    .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;align-items:start}
-    @media (max-width: 860px){.grid{grid-template-columns:1fr}}
-    .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-    .panel h2{margin:0;padding:12px 14px;font-size:15px;border-bottom:1px solid var(--line);}
-    .panel .inner{padding:12px 14px;}
-    .cards{display:flex;flex-direction:column;gap:12px;padding:12px 0 60px 0;}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-    .card h3{margin:0;padding:12px 14px;font-size:15px;border-bottom:1px solid var(--line);}
-    .list{list-style:none;margin:0;padding:0}
-    .item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);}
-    .item:first-child{border-top:none}
-    .chk{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:center;flex:0 0 auto;background:rgba(6,11,22,.35);}
-    .chk.on{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.45);}
-    .label{flex:1;line-height:1.2;}
-    .label.done{text-decoration:line-through;color:rgba(229,231,235,.55);}
-    .x{border:none;background:transparent;color:rgba(148,163,184,.8);font-size:18px;padding:0 6px;cursor:pointer}
-    .footerbar{position:fixed;left:0;right:0;bottom:0;background:rgba(6,11,22,.72);backdrop-filter:blur(10px);border-top:1px solid var(--line);}
-    .footerbar .wrap{display:flex;gap:10px;align-items:center;justify-content:space-between;}
-    .count{color:var(--muted);font-size:13px;}
-    dialog{border:none;border-radius:16px;padding:0;background:rgba(17,27,46,.98);color:var(--text);width:min(560px,92vw);}
-    dialog::backdrop{background:rgba(0,0,0,.55);}
-    .dlg{padding:14px;}
-    .dlg h3{margin:0 0 10px 0;font-size:15px;}
-    .field{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(6,11,22,.35);color:var(--text);}
-    .muted{color:var(--muted);}
-    .recipe{padding:10px 0;border-top:1px solid var(--line);}
-    .recipe:first-child{border-top:none}
-    .recipe .rname{font-weight:600}
-    .recipe .ing{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.35}
-    .tiny{font-size:12px;color:var(--muted);}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
 
-    /* Print */
+    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:rgba(6,11,22,.72);border-bottom:1px solid var(--line)}
+    .wrap{max-width:860px;margin:0 auto;padding:10px 12px}
+    .topbar{display:flex;gap:8px;align-items:center}
+    .brand{font-weight:700;font-size:14px;white-space:nowrap}
+    .select{padding:9px 10px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.92);color:var(--text)}
+    .search{flex:1;min-width:120px;padding:9px 10px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.92);color:var(--text)}
+    .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.92);color:var(--text);display:grid;place-items:center}
+    .tabs{display:flex;gap:8px;margin-top:8px}
+    .tab{padding:7px 10px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.6);color:var(--muted);cursor:pointer;font-size:12px}
+    .tab.on{color:var(--text);border-color:rgba(34,197,94,.35);background:rgba(17,27,46,.92)}
+
+    .cards{display:flex;flex-direction:column;gap:10px;padding:10px 0 54px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .card h3{margin:0;padding:10px 12px;font-size:14px;border-bottom:1px solid var(--line)}
+    .list{list-style:none;margin:0;padding:0}
+    .item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line)}
+    .item:first-child{border-top:none}
+    .chk{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:center;background:rgba(6,11,22,.35)}
+    .chk.on{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.45)}
+    .label{flex:1;line-height:1.25}
+    .label.done{text-decoration:line-through;color:rgba(229,231,235,.55)}
+    .x{border:none;background:transparent;color:rgba(148,163,184,.85);font-size:18px;padding:0 6px;cursor:pointer}
+
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:10px}
+    .panel h2{margin:0;padding:10px 12px;font-size:14px;border-bottom:1px solid var(--line)}
+    .inner{padding:10px 12px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .btn{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.92);color:var(--text)}
+    .btn.primary{border-color:rgba(34,197,94,.45)}
+    .tiny{font-size:12px;color:var(--muted)}
+    .recipe{padding:10px 0;border-top:1px solid var(--line)}
+    .recipe:first-child{border-top:none}
+    .rhead{display:flex;gap:10px;align-items:flex-start}
+    .rchk{margin-top:2px}
+    details{margin-top:6px}
+    summary{cursor:pointer;color:var(--text)}
+    .meta{font-size:12px;color:var(--muted);margin-top:2px}
+    .ingline{font-size:12px;color:var(--muted);line-height:1.35;margin-top:6px}
+    ol{margin:6px 0 0 18px;padding:0}
+    li{margin:4px 0}
+
+    .footerbar{position:fixed;left:0;right:0;bottom:0;background:rgba(6,11,22,.82);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+    .footerbar .wrap{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 12px}
+    .count{color:var(--muted);font-size:12px}
+
+    dialog{border:none;border-radius:16px;padding:0;background:rgba(17,27,46,.98);color:var(--text);width:min(420px,92vw)}
+    dialog::backdrop{background:rgba(0,0,0,.55)}
+    .dlg{padding:12px}
+    .dlg h3{margin:0 0 8px;font-size:14px}
+    .dlg .btn{width:100%;margin-top:6px}
+
     @media print{
-      header,.footerbar,#plansPanel{display:none !important;}
+      header,.footerbar,#planControls{display:none !important;}
       body{background:white;color:black}
-      .wrap{max-width:none}
       .card,.panel{background:white;border:1px solid #ddd}
       .label.done{text-decoration:line-through;color:#666}
     }
-  
-    /* v2.1 – kompaktní spodní lišta (víc místa pro seznam) */
-    .footerbar{background:rgba(6,11,22,.78);}
-    .footerbar .wrap{padding:10px 16px;}
-    .footerbar .actions{display:flex; gap:8px; align-items:center;}
-    .iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:rgba(17,27,46,.9);color:var(--text);display:grid;place-items:center;}
-    .count{font-size:12px;}
-    .cards{padding-bottom:70px;} /* aby poslední položky nebyly pod lištou */
-    dialog .danger{border-color:rgba(239,68,68,.45);}
-
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <h1>Nákupní seznam</h1>
-      <p class="sub">Více seznamů (Týden 1 / Týden 2 / Vlastní). Generování seznamu z jídelníčku, sdílení, tisk do PDF. Offline.</p>
-
-      <div class="row">
-        <label class="pill" for="listSel">📋 Seznam</label>
-        <select id="listSel" class="select"></select>
-
-        <input id="q" class="search" placeholder="Hledat (např. ‚okurka‘, ‚jogurt‘)…" />
-        <button class="btn primary" id="addBtn">+ Přidat</button>
-        <button class="btn" id="shareBtn">Sdílet</button>
-        <button class="btn" id="printBtn">Tisk/PDF</button>
-        <button class="btn danger" id="resetBtn">Reset</button>
+      <div class="topbar">
+        <div class="brand">🧺 Seznam</div>
+        <select id="listSel" class="select" aria-label="Seznam"></select>
+        <input id="q" class="search" placeholder="Hledat…" aria-label="Hledat" />
+        <button class="iconbtn" id="addBtn" title="Přidat">＋</button>
+        <button class="iconbtn" id="topMoreBtn" title="Více">⋯</button>
       </div>
-
-      <div style="margin-top:10px" class="row">
-        <span class="pill">✅ <span id="doneP">0</span></span>
-        <span class="pill">🧺 <span id="leftP">0</span></span>
-        <span class="pill">💡 <span class="muted">Tip: „Přidat na plochu“ = aplikace</span></span>
-      </div>
-
       <div class="tabs">
         <button class="tab on" id="tabList">Seznam</button>
         <button class="tab" id="tabPlan">Jídelníček</button>
@@ -113,75 +96,71 @@
     </div>
 
     <div id="viewPlan" style="display:none">
-      <div class="grid">
-        <section class="panel" id="plansPanel">
-          <h2>Jídelníček</h2>
-          <div class="inner">
-            <div class="row" style="margin-bottom:10px">
-              <label class="pill" for="planSel">🗓️ Plán</label>
-              <select id="planSel" class="select" style="flex:1"></select>
-            </div>
-            <div class="row" style="margin-bottom:12px">
-              <button class="btn primary" id="genBtn">Vytvořit nákupní seznam z tohoto jídelníčku</button>
-              <button class="btn" id="appendBtn">Přidat do aktuálního seznamu</button>
-            </div>
-            <p class="tiny">„Vytvořit“ přepíše položky v aktuálním seznamu. „Přidat“ ponechá existující položky a doplní chybějící.</p>
+      <section class="panel" id="planControls">
+        <h2>Jídelníček</h2>
+        <div class="inner">
+          <div class="row" style="margin-bottom:10px">
+            <select id="planSel" class="select" style="flex:1" aria-label="Plán"></select>
           </div>
-        </section>
+          <div class="row" style="margin-bottom:10px">
+            <button class="btn primary" id="genSelectedBtn">Vytvořit seznam z vybraných jídel</button>
+            <button class="btn" id="appendSelectedBtn">Přidat vybraná jídla do seznamu</button>
+          </div>
+          <div class="tiny">Vyber jedno nebo více jídel níže. „Vytvořit“ přepíše aktuální seznam, „Přidat“ jen doplní chybějící položky.</div>
+        </div>
+      </section>
 
-        <section class="panel">
-          <h2>Recepty v plánu</h2>
-          <div class="inner" id="recipesBox"></div>
-        </section>
-      </div>
+      <section class="panel">
+        <h2>Recepty (klikni pro postup)</h2>
+        <div class="inner" id="recipesBox"></div>
+      </section>
     </div>
   </main>
 
   <div class="footerbar">
     <div class="wrap">
       <div class="count" id="countLine"></div>
-      <div class="actions">
-        <button class="iconbtn" id="hideDoneBtn" title="Skrýt / zobrazit hotové" aria-label="Skrýt / zobrazit hotové">🙈</button>
-        <button class="iconbtn" id="markAllBtn" title="Označit vše" aria-label="Označit vše">✓</button>
-        <button class="iconbtn" id="moreBtn" title="Další akce" aria-label="Další akce">⋯</button>
+      <div class="row">
+        <button class="iconbtn" id="hideDoneBtn" title="Skrýt hotové / zobrazit hotové">🙈</button>
+        <button class="iconbtn" id="markAllBtn" title="Označit vše / odznačit vše">✓</button>
+        <button class="iconbtn" id="moreBtn" title="Další akce">⋯</button>
       </div>
     </div>
   </div>
 
-  <dialog id="moreDlg">
+  <dialog id="dlgAdd">
     <div class="dlg">
-      <h3>Další akce</h3>
-      <button class="btn" id="moreRename">Přejmenovat seznam</button>
-      <button class="btn" id="moreShare">Sdílet seznam</button>
-      <button class="btn" id="morePrint">Tisk / PDF</button>
-      <button class="btn danger" id="moreReset">Resetovat seznam</button>
-      <button class="btn ghost" id="moreClose">Zavřít</button>
+      <h3>Přidat položku</h3>
+      <input id="newName" class="search" placeholder="Název položky" />
+      <div style="height:8px"></div>
+      <select id="newCat" class="select" style="width:100%"></select>
+      <div style="height:8px"></div>
+      <button class="btn primary" id="saveBtn">Uložit</button>
+      <button class="btn" id="cancelBtn">Zrušit</button>
     </div>
   </dialog>
 
-  <dialog id="dlg">
+  <dialog id="dlgMore">
     <div class="dlg">
-      <h3>Přidat položku</h3>
-      <p class="muted" style="margin:0 0 10px 0">Např. „Avokádo“, „Pečivo“, „Koriandr“…</p>
-      <input id="newName" class="field" placeholder="Název položky" />
-      <div class="row" style="margin-top:10px">
-        <select id="newCat" class="field" style="flex:1"></select>
-      </div>
-      <div class="row" style="justify-content:flex-end; margin-top:10px">
-        <button class="btn" id="cancelBtn">Zrušit</button>
-        <button class="btn primary" id="saveBtn">Uložit</button>
-      </div>
+      <h3>Další akce</h3>
+      <button class="btn" id="renameBtn">Přejmenovat seznam</button>
+      <button class="btn" id="shareBtn">Sdílet seznam</button>
+      <button class="btn" id="printBtn">Tisk/PDF</button>
+      <button class="btn" id="resetBtn">Reset aktuálního seznamu</button>
+      <button class="btn" id="closeMoreBtn">Zavřít</button>
     </div>
   </dialog>
 
   <script>
-    const APP_DATA = {"plans": [{"id": "week1", "name": "Týden 1 (z našich receptů)", "recipes": [{"name": "Kuřecí prsa + quinoa + pečená zelenina", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Kuřecí prsa (cca 700 g)"}, {"category": "Přílohy / pečivo", "name": "Quinoa – 1 balení"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Losos + rýže + okurkový salát", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Losos – 2 filety"}, {"category": "Přílohy / pečivo", "name": "Rýže (basmati / natural) – 1 balení"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Kopr (čerstvý/sušený)"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Čočkový salát s fetou", "ingredients": [{"category": "Luštěniny / hotové produkty", "name": "Čočka v konzervě – 1 ks"}, {"category": "Mléčné výrobky", "name": "Feta / balkánský sýr – 1 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Jarní cibulka – 1 svazek"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Tortilla wrap (kuře / tuňák)", "ingredients": [{"category": "Přílohy / pečivo", "name": "Celozrnné tortilly – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Hořčice"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Zeleninová polévka", "ingredients": [{"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Cibule / pórek – 1 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}, {"category": "Přílohy / pečivo", "name": "Celozrnný chléb / pečivo – 1 balení"}]}, {"name": "Salát s vejcem / tuňákem", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Restovaná zelenina + tofu/kuře", "ingredients": [{"category": "Zelenina", "name": "Mražená zelenina – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tofu – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sójová omáčka"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}]}, {"name": "Cottage / tvaroh + zelenina + semínka", "ingredients": [{"category": "Mléčné výrobky", "name": "Cottage sýr – 2 balení"}, {"category": "Mléčné výrobky", "name": "Tvaroh měkký – 1 balení"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Semínka (slunečnice / dýně) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Zeleninová omeleta", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}]}, {"name": "Snídaně/svačiny (základ)", "ingredients": [{"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Přílohy / pečivo", "name": "Ovesné vločky – 1 balení"}, {"category": "Ovoce", "name": "Jablka – 4 ks"}, {"category": "Ovoce", "name": "Banány – 4 ks"}, {"category": "Ovoce", "name": "Ovoce do jogurtu (borůvky / jahody) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Ořechy – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Arašídové máslo (100 %)"}, {"category": "Přílohy / pečivo", "name": "Knäckebrot – 1 balení"}, {"category": "Luštěniny / hotové produkty", "name": "Hummus – 1 balení"}, {"category": "Volitelné", "name": "Hořká čokoláda"}, {"category": "Volitelné", "name": "Proteinové tyčinky (2–3 ks)"}]}]}, {"id": "week2", "name": "Týden 2 (šablona – uprav si)", "recipes": [{"name": "Šablona", "ingredients": [{"category": "Zelenina", "name": "(doplň si položky)"}]}]}], "defaultLists": [{"id": "list-week1", "name": "Týden 1", "planId": "week1", "items": [{"category": "Maso / ryby / bílkoviny", "name": "Kuřecí prsa (cca 700 g)"}, {"category": "Přílohy / pečivo", "name": "Quinoa – 1 balení"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}, {"category": "Maso / ryby / bílkoviny", "name": "Losos – 2 filety"}, {"category": "Přílohy / pečivo", "name": "Rýže (basmati / natural) – 1 balení"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Kopr (čerstvý/sušený)"}, {"category": "Luštěniny / hotové produkty", "name": "Čočka v konzervě – 1 ks"}, {"category": "Mléčné výrobky", "name": "Feta / balkánský sýr – 1 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Jarní cibulka – 1 svazek"}, {"category": "Přílohy / pečivo", "name": "Celozrnné tortilly – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Hořčice"}, {"category": "Zelenina", "name": "Cibule / pórek – 1 ks"}, {"category": "Přílohy / pečivo", "name": "Celozrnný chléb / pečivo – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Zelenina", "name": "Mražená zelenina – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tofu – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sójová omáčka"}, {"category": "Mléčné výrobky", "name": "Cottage sýr – 2 balení"}, {"category": "Mléčné výrobky", "name": "Tvaroh měkký – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Semínka (slunečnice / dýně) – 1 balení"}, {"category": "Přílohy / pečivo", "name": "Ovesné vločky – 1 balení"}, {"category": "Ovoce", "name": "Jablka – 4 ks"}, {"category": "Ovoce", "name": "Banány – 4 ks"}, {"category": "Ovoce", "name": "Ovoce do jogurtu (borůvky / jahody) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Ořechy – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Arašídové máslo (100 %)"}, {"category": "Přílohy / pečivo", "name": "Knäckebrot – 1 balení"}, {"category": "Luštěniny / hotové produkty", "name": "Hummus – 1 balení"}, {"category": "Volitelné", "name": "Hořká čokoláda"}, {"category": "Volitelné", "name": "Proteinové tyčinky (2–3 ks)"}]}, {"id": "list-week2", "name": "Týden 2", "planId": "week2", "items": [{"category": "Zelenina", "name": "(doplň si položky)"}]}, {"id": "list-custom", "name": "Vlastní", "planId": null, "items": []}]};
+    const APP_DATA = {"plans": [{"id": "week1", "name": "Týden 1 (rychlé & dietní)", "recipes": [{"id": "r1", "name": "Kuřecí prsa + quinoa + pečená zelenina", "time": "25–35 min", "servings": "2–3 porce", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Kuřecí prsa (cca 700 g)"}, {"category": "Přílohy / pečivo", "name": "Quinoa – 1 balení"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Troubu předehřej na 200 °C. Zeleninu nakrájej, promíchej s olivovým olejem, solí a pepřem. Peč 20–25 min.", "Quinou propláchni, uvař podle návodu (cca 12–15 min), nech dojít pod pokličkou.", "Kuře osol/opepři, opeč na pánvi 5–7 min z každé strany. Nech 2 min odpočinout a nakrájej.", "Nadávkuj do krabiček: quinoa + zelenina + kuře."], "tips": "Přidej citrón nebo hořčici do zálivky."}, {"id": "r2", "name": "Losos + rýže + okurkový salát (jogurtový)", "time": "20–25 min", "servings": "2 porce", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Losos – 2 filety"}, {"category": "Přílohy / pečivo", "name": "Rýže (basmati / natural) – 1 balení"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Kopr (čerstvý/sušený)"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Rýži uvař podle návodu.", "Lososa osol/opepři, opeč 3–4 min kůží dolů, otoč a dopékaj 2–3 min (nebo peč 10–12 min na 200 °C).", "Okurku nakrájej. Smíchej jogurt + citron + kopr + sůl/pepř a promíchej s okurkou.", "Krabičkuj: rýže + losos, salát zvlášť."], "tips": "Salát dej do malé krabičky, ať se rýže nerozmočí."}, {"id": "r3", "name": "Čočkový salát s fetou", "time": "10–15 min", "servings": "2–3 porce", "ingredients": [{"category": "Luštěniny / hotové produkty", "name": "Čočka v konzervě – 1 ks"}, {"category": "Mléčné výrobky", "name": "Feta / balkánský sýr – 1 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Jarní cibulka – 1 svazek"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Čočku slij a propláchni.", "Zeleninu nakrájej, přidej čočku.", "Zálivka: olivový olej + citron + sůl/pepř. Promíchej.", "Navrch rozdrob fetu."], "tips": "Vydrží 2–3 dny v lednici."}, {"id": "r4", "name": "Tortilla wrap (tuňák + jogurt + salát)", "time": "10 min", "servings": "2 wrapy", "ingredients": [{"category": "Přílohy / pečivo", "name": "Celozrnné tortilly – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Hořčice"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Tuňáka slij, promíchej s jogurtem, hořčicí, solí a pepřem.", "Na tortillu dej salát, rajče a tuňákovou směs.", "Zatoč a zabal. Do práce ideálně zabal do papíru/folie."], "tips": "Přidej okurku nebo jarní cibulku."}, {"id": "r5", "name": "Zeleninová polévka (rychlá)", "time": "20–30 min", "servings": "3–4 porce", "ingredients": [{"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Cibule / pórek – 1 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}, {"category": "Přílohy / pečivo", "name": "Celozrnný chléb / pečivo – 1 balení"}], "steps": ["Cibuli/pórek krátce orestuj na troše oleje.", "Přidej nakrájenou zeleninu, zalij vodou/vývarem, osol a opepři.", "Vař 15–20 min do změknutí. Podávej s pečivem."], "tips": "Část rozmixuj na krém."}, {"id": "r6", "name": "Salát s vejcem / tuňákem", "time": "12–15 min", "servings": "2 porce", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Vejce uvař natvrdo (9–10 min), zchlaď a oloupej.", "Smíchej salát, okurku, rajče. Přidej vejce nebo tuňáka.", "Zálivka: olivový olej + citron + sůl/pepř (dej do malé krabičky)."], "tips": "Super i jako rychlá večeře."}, {"id": "r7", "name": "Restovaná zelenina + tofu (sójová)", "time": "12–15 min", "servings": "2 porce", "ingredients": [{"category": "Zelenina", "name": "Mražená zelenina – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tofu – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sójová omáčka"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}], "steps": ["Restuj mraženou zeleninu na troše oleje 6–8 min.", "Přidej tofu na kostky, opékej 3–4 min.", "Zakápni sójovou omáčkou a prohoď."], "tips": "S přílohou rýže je to plnohodnotný oběd."}, {"id": "r8", "name": "Cottage/tvaroh + zelenina + semínka (svačina)", "time": "5 min", "servings": "1 porce", "ingredients": [{"category": "Mléčné výrobky", "name": "Cottage sýr – 2 balení"}, {"category": "Mléčné výrobky", "name": "Tvaroh měkký – 1 balení"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Semínka (slunečnice / dýně) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Dej cottage/tvaroh do misky.", "Přidej zeleninu a semínka, osol/opepři."], "tips": "Na sladko: skyr + ovoce + ořechy."}, {"id": "r9", "name": "Zeleninová omeleta", "time": "10–12 min", "servings": "1–2 porce", "ingredients": [{"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}], "steps": ["Krátce orestuj zeleninu na pánvi.", "Vejce rozšlehej se solí/pepřem, nalij na zeleninu.", "Opékej na mírném ohni 5–7 min."], "tips": "Výborné i studené do krabičky."}, {"id": "r10", "name": "Snídaně/svačiny (skyr + vločky + ovoce)", "time": "5 min", "servings": "1 porce", "ingredients": [{"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Přílohy / pečivo", "name": "Ovesné vločky – 1 balení"}, {"category": "Ovoce", "name": "Jablka – 4 ks"}, {"category": "Ovoce", "name": "Banány – 4 ks"}, {"category": "Ovoce", "name": "Ovoce do jogurtu (borůvky / jahody) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Ořechy – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Arašídové máslo (100 %)"}, {"category": "Přílohy / pečivo", "name": "Knäckebrot – 1 balení"}, {"category": "Luštěniny / hotové produkty", "name": "Hummus – 1 balení"}, {"category": "Volitelné", "name": "Hořká čokoláda"}, {"category": "Volitelné", "name": "Proteinové tyčinky (2–3 ks)"}], "steps": ["Skyr/jogurt dej do krabičky, přidej vločky, ovoce a ořechy.", "Volitelně: lžička arašídového másla nebo pár kostiček hořké čokolády."], "tips": "Na cesty: knäckebrot + hummus."}]}, {"id": "week2", "name": "Týden 2 (šablona – doplníš)", "recipes": [{"id": "w2r1", "name": "(doplň si recepty)", "time": "", "servings": "", "ingredients": [{"category": "Zelenina", "name": "(doplň si položky)"}], "steps": ["(doplň)"], "tips": ""}]}], "defaultLists": [{"id": "list-week1", "name": "Týden 1", "planId": "week1", "items": [{"category": "Maso / ryby / bílkoviny", "name": "Kuřecí prsa (cca 700 g)"}, {"category": "Přílohy / pečivo", "name": "Quinoa – 1 balení"}, {"category": "Zelenina", "name": "Cuketa – 2 ks"}, {"category": "Zelenina", "name": "Paprika – 4 ks"}, {"category": "Zelenina", "name": "Mrkev – 4 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Olivový olej"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sůl, pepř"}, {"category": "Maso / ryby / bílkoviny", "name": "Losos – 2 filety"}, {"category": "Přílohy / pečivo", "name": "Rýže (basmati / natural) – 1 balení"}, {"category": "Zelenina", "name": "Salátová okurka – 3 ks"}, {"category": "Mléčné výrobky", "name": "Bílý jogurt / skyr – 3 balení"}, {"category": "Ovoce", "name": "Citróny – 2 ks"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Kopr (čerstvý/sušený)"}, {"category": "Luštěniny / hotové produkty", "name": "Čočka v konzervě – 1 ks"}, {"category": "Mléčné výrobky", "name": "Feta / balkánský sýr – 1 balení"}, {"category": "Zelenina", "name": "Rajčata – 4 ks"}, {"category": "Zelenina", "name": "Jarní cibulka – 1 svazek"}, {"category": "Přílohy / pečivo", "name": "Celozrnné tortilly – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tuňák ve vlastní šťávě – 2 ks"}, {"category": "Zelenina", "name": "Listový salát / rukola – 2 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Hořčice"}, {"category": "Zelenina", "name": "Cibule / pórek – 1 ks"}, {"category": "Přílohy / pečivo", "name": "Celozrnný chléb / pečivo – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Vejce – 10 ks"}, {"category": "Zelenina", "name": "Mražená zelenina – 1 balení"}, {"category": "Maso / ryby / bílkoviny", "name": "Tofu – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Sójová omáčka"}, {"category": "Mléčné výrobky", "name": "Cottage sýr – 2 balení"}, {"category": "Mléčné výrobky", "name": "Tvaroh měkký – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Semínka (slunečnice / dýně) – 1 balení"}, {"category": "Přílohy / pečivo", "name": "Ovesné vločky – 1 balení"}, {"category": "Ovoce", "name": "Jablka – 4 ks"}, {"category": "Ovoce", "name": "Banány – 4 ks"}, {"category": "Ovoce", "name": "Ovoce do jogurtu (borůvky / jahody) – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Ořechy – 1 balení"}, {"category": "Ořechy / semínka / dochucovadla", "name": "Arašídové máslo (100 %)"}, {"category": "Přílohy / pečivo", "name": "Knäckebrot – 1 balení"}, {"category": "Luštěniny / hotové produkty", "name": "Hummus – 1 balení"}, {"category": "Volitelné", "name": "Hořká čokoláda"}, {"category": "Volitelné", "name": "Proteinové tyčinky (2–3 ks)"}]}, {"id": "list-week2", "name": "Týden 2", "planId": "week2", "items": [{"category": "Zelenina", "name": "(doplň si položky)"}]}, {"id": "list-custom", "name": "Vlastní", "planId": null, "items": []}]};
 
     const STORAGE = {
-      lists: "ns_lists_v2",
-      current: "ns_current_list_v2",
-      prefs: "ns_prefs_v2",
-      itemsPrefix: "ns_items_v2__"
+      lists: "ns_lists_v22",
+      current: "ns_current_list_v22",
+      prefs: "ns_prefs_v22",
+      itemsPrefix: "ns_items_v22__",
+      plan: "ns_plan_v22",
+      selected: "ns_selected_recipes_v22__"
     };
 
     const state = {
@@ -191,62 +170,53 @@
       hideDone: false,
       view: "list",
       currentPlanId: APP_DATA.plans[0]?.id || null,
+      selectedRecipes: new Set(),
     };
 
     function uid() { return crypto.randomUUID(); }
-
-    function normalizeKey(s){
-      return (s||"").toLowerCase().replace(/\s+/g," ").trim();
-    }
+    function normalizeKey(s){ return (s||"").toLowerCase().replace(/\s+/g," ").trim(); }
+    function itemsKey(listId){ return STORAGE.itemsPrefix + listId; }
+    function selectedKey(planId){ return STORAGE.selected + planId; }
 
     function load(){
-      // prefs
       const prefRaw = localStorage.getItem(STORAGE.prefs);
       if (prefRaw) { try { const p = JSON.parse(prefRaw); state.hideDone = !!p.hideDone; } catch {} }
 
-      // lists
       const listsRaw = localStorage.getItem(STORAGE.lists);
-      if (listsRaw){
-        try { state.lists = JSON.parse(listsRaw); } catch { state.lists = structuredClone(APP_DATA.defaultLists); }
-      } else {
-        state.lists = structuredClone(APP_DATA.defaultLists);
-      }
+      if (listsRaw){ try { state.lists = JSON.parse(listsRaw); } catch { state.lists = structuredClone(APP_DATA.defaultLists); } }
+      else { state.lists = structuredClone(APP_DATA.defaultLists); }
 
-      // current list
       state.currentListId = localStorage.getItem(STORAGE.current) || state.lists[0]?.id || "list-week1";
 
-      // plan
-      const planSelRaw = localStorage.getItem("ns_plan_v2");
-      if (planSelRaw) state.currentPlanId = planSelRaw;
+      const planRaw = localStorage.getItem(STORAGE.plan);
+      if (planRaw) state.currentPlanId = planRaw;
 
       loadItemsForCurrent();
+      loadSelectedForPlan();
     }
 
     function persistLists(){
       localStorage.setItem(STORAGE.lists, JSON.stringify(state.lists));
       localStorage.setItem(STORAGE.current, state.currentListId);
       localStorage.setItem(STORAGE.prefs, JSON.stringify({hideDone: state.hideDone}));
-      localStorage.setItem("ns_plan_v2", state.currentPlanId || "");
-    }
-
-    function itemsKey(listId){ return STORAGE.itemsPrefix + listId; }
-
-    function loadItemsForCurrent(){
-      const raw = localStorage.getItem(itemsKey(state.currentListId));
-      if (raw){
-        try { state.items = JSON.parse(raw); return; } catch {}
-      }
-      // initialize from default list items (if defined)
-      const meta = state.lists.find(l=>l.id===state.currentListId);
-      const defaults = meta?.items || [];
-      state.items = defaults.map(x => ({...x, done:false, id: uid()}));
-      persistItems();
+      localStorage.setItem(STORAGE.plan, state.currentPlanId || "");
     }
 
     function persistItems(){
       localStorage.setItem(itemsKey(state.currentListId), JSON.stringify(state.items));
       persistLists();
     }
+
+    function loadItemsForCurrent(){
+      const raw = localStorage.getItem(itemsKey(state.currentListId));
+      if (raw){ try { state.items = JSON.parse(raw); return; } catch {} }
+      const meta = state.lists.find(l=>l.id===state.currentListId);
+      const defaults = meta?.items || [];
+      state.items = defaults.map(x => ({...x, done:false, id: uid()}));
+      persistItems();
+    }
+
+    function currentListName(){ return state.lists.find(l=>l.id===state.currentListId)?.name || "Seznam"; }
 
     function groupByCategory(items){
       const map = new Map();
@@ -285,18 +255,37 @@
       sel.onchange = () => {
         state.currentPlanId = sel.value;
         persistLists();
-        renderPlan();
+        loadSelectedForPlan();
+        renderAll();
       };
     }
 
-    function currentPlan(){
-      return APP_DATA.plans.find(p=>p.id===state.currentPlanId) || APP_DATA.plans[0];
+    function currentPlan(){ return APP_DATA.plans.find(p=>p.id===state.currentPlanId) || APP_DATA.plans[0]; }
+
+    function loadSelectedForPlan(){
+      state.selectedRecipes = new Set();
+      const raw = localStorage.getItem(selectedKey(state.currentPlanId));
+      if (raw){
+        try { const arr = JSON.parse(raw); for (const id of arr) state.selectedRecipes.add(id); } catch {}
+      } else {
+        const plan = currentPlan();
+        if (plan.id === "week1") for (const r of plan.recipes) state.selectedRecipes.add(r.id);
+      }
     }
 
-    function planToShopping(plan){
+    function persistSelectedForPlan(){
+      localStorage.setItem(selectedKey(state.currentPlanId), JSON.stringify([...state.selectedRecipes]));
+    }
+
+    function selectedRecipesObjects(){
+      const plan = currentPlan();
+      return plan.recipes.filter(r => state.selectedRecipes.has(r.id));
+    }
+
+    function planToShoppingFromRecipes(recipes){
       const seen = new Set();
       const out = [];
-      for (const r of plan.recipes){
+      for (const r of recipes){
         for (const ing of r.ingredients){
           const k = normalizeKey(ing.category) + "||" + normalizeKey(ing.name);
           if (!seen.has(k)){
@@ -308,10 +297,9 @@
       return out;
     }
 
-    function applyShoppingToList(mode){
-      // mode: "replace" or "append"
-      const plan = currentPlan();
-      const shopping = planToShopping(plan);
+    function applySelectedToList(mode){
+      const recipes = selectedRecipesObjects();
+      const shopping = planToShoppingFromRecipes(recipes);
 
       if (mode === "replace"){
         state.items = shopping.map(x => ({...x, done:false, id: uid()}));
@@ -320,17 +308,17 @@
         for (const x of shopping){
           const k = normalizeKey(x.category)+"||"+normalizeKey(x.name);
           if (!existing.has(k)){
-            state.items.unshift({ ...x, done:false, id: uid() });
+            state.items.unshift({...x, done:false, id: uid()});
             existing.add(k);
           }
         }
       }
       persistItems();
-      // Switch to list view
       setView("list");
+      renderAll();
     }
 
-    function render(){
+    function renderList(){
       const q = (document.getElementById("q").value || "").trim().toLowerCase();
       let filtered = state.items.filter(it => it.name.toLowerCase().includes(q) || it.category.toLowerCase().includes(q));
       if (state.hideDone) filtered = filtered.filter(it => !it.done);
@@ -366,7 +354,7 @@
 
           const del = document.createElement("button");
           del.className = "x";
-          del.title = "Smazat položku";
+          del.title = "Smazat";
           del.textContent = "×";
           del.onclick = () => { state.items = state.items.filter(x => x.id !== it.id); persistItems(); renderAll(); };
 
@@ -382,36 +370,94 @@
 
       const done = state.items.filter(x=>x.done).length;
       const left = state.items.length - done;
-      document.getElementById("doneP").textContent = done;
-      document.getElementById("leftP").textContent = left;
-      document.getElementById("countLine").textContent = `Seznam: ${currentListName()} • Hotovo: ${done} • Zbývá: ${left} • Celkem: ${state.items.length}`;
-      document.getElementById("hideDoneBtn").textContent = state.hideDone ? "Zobrazit hotové" : "Skrýt hotové";
+      document.getElementById("countLine").textContent = `Seznam: ${currentListName()} • Hotovo: ${done} • Zbývá: ${left}`;
+      document.getElementById("hideDoneBtn").textContent = state.hideDone ? "👁" : "🙈";
     }
 
     function renderPlan(){
+      const plan = currentPlan();
       const box = document.getElementById("recipesBox");
       box.innerHTML = "";
-      const plan = currentPlan();
+
       for (const r of plan.recipes){
         const div = document.createElement("div");
         div.className = "recipe";
-        const rn = document.createElement("div");
-        rn.className = "rname";
-        rn.textContent = r.name;
-        const ing = document.createElement("div");
-        ing.className = "ing";
-        ing.textContent = r.ingredients.map(x=>`${x.category}: ${x.name}`).join(" • ");
-        div.appendChild(rn);
-        div.appendChild(ing);
+
+        const head = document.createElement("div");
+        head.className = "rhead";
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.className = "rchk";
+        cb.checked = state.selectedRecipes.has(r.id);
+        cb.onchange = () => {
+          if (cb.checked) state.selectedRecipes.add(r.id);
+          else state.selectedRecipes.delete(r.id);
+          persistSelectedForPlan();
+        };
+
+        const info = document.createElement("div");
+        const title = document.createElement("div");
+        title.style.fontWeight = "650";
+        title.textContent = r.name;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = [r.time, r.servings].filter(Boolean).join(" • ");
+
+        const ings = document.createElement("div");
+        ings.className = "ingline";
+        ings.textContent = r.ingredients.map(x => `${x.category}: ${x.name}`).join(" • ");
+
+        const det = document.createElement("details");
+        const sum = document.createElement("summary");
+        sum.textContent = "Postup receptu";
+        det.appendChild(sum);
+
+        const ol = document.createElement("ol");
+        for (const s of (r.steps || [])){
+          const li = document.createElement("li");
+          li.textContent = s;
+          ol.appendChild(li);
+        }
+        det.appendChild(ol);
+
+        if (r.tips){
+          const tip = document.createElement("div");
+          tip.className = "tiny";
+          tip.style.marginTop = "6px";
+          tip.textContent = "Tip: " + r.tips;
+          det.appendChild(tip);
+        }
+
+        info.appendChild(title);
+        info.appendChild(meta);
+        info.appendChild(ings);
+        info.appendChild(det);
+
+        head.appendChild(cb);
+        head.appendChild(info);
+
+        div.appendChild(head);
         box.appendChild(div);
       }
+    }
+
+    function setView(v){
+      state.view = v;
+      document.getElementById("viewList").style.display = (v==="list") ? "" : "none";
+      document.getElementById("viewPlan").style.display = (v==="plan") ? "" : "none";
+      document.getElementById("tabList").classList.toggle("on", v==="list");
+      document.getElementById("tabPlan").classList.toggle("on", v==="plan");
+      if (v==="plan") renderPlan();
+      if (v==="list") renderList();
     }
 
     function renderAll(){
       fillListSelect();
       fillPlanSelect();
-      render();
-      renderPlan();
+      if (state.view === "plan") renderPlan();
+      renderList();
     }
 
     function fillCategorySelect(){
@@ -424,7 +470,8 @@
         sel.appendChild(opt);
       }
       const optNew = document.createElement("option");
-      optNew.value="__new__"; optNew.textContent="➕ Nová kategorie…";
+      optNew.value = "__new__";
+      optNew.textContent = "➕ Nová kategorie…";
       sel.appendChild(optNew);
 
       if (cats.length) sel.value = cats[0];
@@ -445,10 +492,10 @@
       };
     }
 
-    function openAddDialog(){
+    function openAdd(){
       fillCategorySelect();
       document.getElementById("newName").value = "";
-      document.getElementById("dlg").showModal();
+      document.getElementById("dlgAdd").showModal();
       setTimeout(()=>document.getElementById("newName").focus(), 50);
     }
 
@@ -458,7 +505,7 @@
       if (!name) return;
       state.items.unshift({ id: uid(), name, category: cat, done:false });
       persistItems();
-      document.getElementById("dlg").close();
+      document.getElementById("dlgAdd").close();
       renderAll();
     }
 
@@ -475,12 +522,12 @@
       if (navigator.share){
         try { await navigator.share({ title: "Nákupní seznam", text }); return; } catch(e){}
       }
-      try { await navigator.clipboard.writeText(text); alert("Zkopírováno do schránky ✅"); }
-      catch { prompt("Zkopíruj seznam:", text); }
+      try { await navigator.clipboard.writeText(text); alert("Zkopírováno ✅"); }
+      catch { prompt("Zkopíruj:", text); }
     }
 
-    function resetAll(){
-      if (!confirm("Opravdu resetovat aktuální seznam na výchozí položky?")) return;
+    function resetCurrent(){
+      if (!confirm("Resetovat aktuální seznam na výchozí položky?")) return;
       const meta = state.lists.find(l=>l.id===state.currentListId);
       const defaults = meta?.items || [];
       state.items = defaults.map(x => ({...x, done:false, id: uid()}));
@@ -495,20 +542,6 @@
       renderAll();
     }
 
-    function setView(v){
-      state.view = v;
-      document.getElementById("viewList").style.display = (v==="list") ? "" : "none";
-      document.getElementById("viewPlan").style.display = (v==="plan") ? "" : "none";
-      document.getElementById("tabList").classList.toggle("on", v==="list");
-      document.getElementById("tabPlan").classList.toggle("on", v==="plan");
-      if (v==="plan") renderPlan();
-      if (v==="list") render();
-    }
-
-    function currentListName(){
-      return state.lists.find(l=>l.id===state.currentListId)?.name || "Seznam";
-    }
-
     function renameList(){
       const meta = state.lists.find(l=>l.id===state.currentListId);
       if (!meta) return;
@@ -520,41 +553,40 @@
     }
 
     // Events
-    document.getElementById("q").addEventListener("input", render);
-    document.getElementById("addBtn").addEventListener("click", openAddDialog);
-    document.getElementById("shareBtn").addEventListener("click", shareList);
-    document.getElementById("printBtn").addEventListener("click", () => window.print());
-    document.getElementById("resetBtn").addEventListener("click", resetAll);
-    document.getElementById("hideDoneBtn").addEventListener("click", () => { state.hideDone = !state.hideDone; persistLists(); renderAll(); });
-    document.getElementById("markAllBtn").addEventListener("click", markAll);
-
-
-    // v2.1 – menu „⋯“
-    const moreDlg = document.getElementById("moreDlg");
-    document.getElementById("moreBtn").addEventListener("click", () => moreDlg.showModal());
-    document.getElementById("moreClose").addEventListener("click", () => moreDlg.close());
-    document.getElementById("moreRename").addEventListener("click", () => { moreDlg.close(); renameList(); });
-    document.getElementById("moreShare").addEventListener("click", async () => { moreDlg.close(); await shareList(); });
-    document.getElementById("morePrint").addEventListener("click", () => { moreDlg.close(); window.print(); });
-    document.getElementById("moreReset").addEventListener("click", () => { moreDlg.close(); resetAll(); });
-
-    document.getElementById("cancelBtn").addEventListener("click", () => document.getElementById("dlg").close());
-    document.getElementById("saveBtn").addEventListener("click", addItem);
-    document.getElementById("newName").addEventListener("keydown", (e)=>{ if (e.key==="Enter") addItem(); });
-
+    document.getElementById("q").addEventListener("input", renderList);
     document.getElementById("tabList").addEventListener("click", ()=>setView("list"));
     document.getElementById("tabPlan").addEventListener("click", ()=>setView("plan"));
 
-    document.getElementById("genBtn").addEventListener("click", () => {
-      if (!confirm("Přepsat položky v aktuálním seznamu podle jídelníčku?")) return;
-      applyShoppingToList("replace");
-      renderAll();
+    document.getElementById("addBtn").addEventListener("click", openAdd);
+    document.getElementById("saveBtn").addEventListener("click", addItem);
+    document.getElementById("cancelBtn").addEventListener("click", ()=>document.getElementById("dlgAdd").close());
+    document.getElementById("newName").addEventListener("keydown", (e)=>{ if (e.key==="Enter") addItem(); });
+
+    const more = document.getElementById("dlgMore");
+    const openMore = ()=>more.showModal();
+    document.getElementById("moreBtn").addEventListener("click", openMore);
+    document.getElementById("topMoreBtn").addEventListener("click", openMore);
+    document.getElementById("closeMoreBtn").addEventListener("click", ()=>more.close());
+
+    document.getElementById("hideDoneBtn").addEventListener("click", ()=>{ state.hideDone = !state.hideDone; persistLists(); renderAll(); });
+    document.getElementById("markAllBtn").addEventListener("click", markAll);
+
+    document.getElementById("renameBtn").addEventListener("click", ()=>{ more.close(); renameList(); });
+    document.getElementById("shareBtn").addEventListener("click", ()=>{ more.close(); shareList(); });
+    document.getElementById("printBtn").addEventListener("click", ()=>{ more.close(); window.print(); });
+    document.getElementById("resetBtn").addEventListener("click", ()=>{ more.close(); resetCurrent(); });
+
+    document.getElementById("genSelectedBtn").addEventListener("click", ()=>{
+      if (!state.selectedRecipes.size) return alert("Vyber aspoň jedno jídlo 🙂");
+      if (!confirm("Přepsat aktuální seznam podle vybraných jídel?")) return;
+      applySelectedToList("replace");
     });
-    document.getElementById("appendBtn").addEventListener("click", () => {
-      applyShoppingToList("append");
-      renderAll();
+    document.getElementById("appendSelectedBtn").addEventListener("click", ()=>{
+      if (!state.selectedRecipes.size) return alert("Vyber aspoň jedno jídlo 🙂");
+      applySelectedToList("append");
     });
 
+    // SW (v22)
     if ("serviceWorker" in navigator){
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
     }
@@ -562,6 +594,7 @@
     // Init
     load();
     renderAll();
+    setView("list");
   </script>
 </body>
 </html>
